@@ -1,72 +1,190 @@
-body {
-    font-family: 'Arial', sans-serif;
+/* Variables CSS - Tonos Fuego Oscuros */
+:root {
+    --primary-color: #ff4500; /* Rojo Anaranjado (Fuego) */
+    --secondary-color: #ff8c00; /* Naranja Oscuro */
+    --background-dark: #1a1a1a; /* Fondo muy oscuro (casi negro) */
+    --card-background: #2b2b2b; /* Fondo de tarjeta gris oscuro */
+    --text-color-light: #f0f0f0; /* Color de texto claro */
+    --accent-glow: #ffc400; /* Amarillo brillante para acentos/glow */
+    --shadow-dark: 0 8px 20px rgba(0, 0, 0, 0.5); /* Sombra intensa */
+    --border-radius: 12px;
+}
+
+/* Base Resets */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9; /* Fondo claro */
-    color: #333;
-    text-align: center;
 }
 
-header {
-    background-color: #007bff; /* Un azul vibrante */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color-light);
+    /* Fondo con un degradado sutil para evitar la planicie */
+    background: var(--background-dark);
+    /* Puedes probar un degradado más complejo o una imagen de fondo sutil si lo prefieres: */
+    /* background: radial-gradient(circle at top left, #333 0%, var(--background-dark) 75%); */
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header/Hero Section */
+.hero {
+    /* Degradado de fuego más intenso para el héroe */
+    background: linear-gradient(145deg, #cc3700 0%, #a83a00 100%);
     color: white;
-    padding: 30px 20px;
-    margin-bottom: 20px;
+    padding: 50px 0;
+    text-align: center;
+    margin-bottom: 40px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    border-bottom: 4px solid var(--primary-color);
 }
 
-h1 {
-    margin-bottom: 5px;
-}
-
-/* Estilo de la cuadrícula de proyectos */
-.project-grid {
+.profile-container {
     display: flex;
-    flex-wrap: wrap; /* Permite que las tarjetas salten a la siguiente línea */
-    justify-content: center;
-    gap: 20px; /* Espacio entre las tarjetas */
-    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px;
 }
 
-/* Estilo de cada tarjeta */
+.profile-photo {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    /* Borde de 'fuego' que contrasta con el fondo oscuro */
+    border: 5px solid var(--accent-glow); 
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.8); /* Efecto de brillo de fuego */
+    margin-bottom: 15px;
+}
+
+.hero-title {
+    font-size: 2.8em;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.highlight-name {
+    /* Mismo color para un contraste fuerte */
+    color: var(--accent-glow);
+    font-size: 1.1em;
+}
+
+.hero-subtitle {
+    font-size: 1.2em;
+    opacity: 0.8;
+    margin-top: 10px;
+}
+
+
+/* Grid de Proyectos */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 30px;
+    padding-bottom: 50px;
+}
+
+/* Tarjeta de Proyecto */
 .project-card {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    width: 300px; /* Ancho fijo para las tarjetas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    transition: transform 0.3s;
+    background-color: var(--card-background);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-dark);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    /* Borde sutil del color primario */
+    border: 1px solid rgba(255, 69, 0, 0.3);
 }
 
 .project-card:hover {
-    transform: translateY(-5px); /* Efecto al pasar el ratón */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px);
+    /* Efecto de 'glow' al pasar el ratón */
+    box-shadow: 0 0 25px rgba(255, 69, 0, 0.5), 0 10px 30px rgba(0, 0, 0, 0.8);
 }
 
-/* Estilo de los enlaces */
-.project-link, .repo-link {
-    display: block; /* Ocupa todo el ancho */
-    padding: 10px;
+.card-title {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.7em;
+    /* Línea sutil de división */
+    border-bottom: 2px solid rgba(255, 69, 0, 0.2); 
+    padding-bottom: 8px;
+}
+
+.card-description {
+    color: var(--text-color-light);
+    opacity: 0.9;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+/* Contenedor de Enlaces */
+.card-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-top: 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
+    border-top: 1px solid rgba(255, 69, 0, 0.2);
+    padding-top: 15px;
 }
 
 .project-link {
-    background-color: #28a745; /* Botón principal verde */
-    color: white;
+    display: inline-block;
+    padding: 9px 16px;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    color: var(--background-dark); /* Texto oscuro sobre el color de fuego */
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 0.95em;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.repo-link {
-    background-color: #6c757d; /* Botón secundario gris */
-    color: white;
-    font-size: 0.9em;
+.project-link:hover {
+    background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+    transform: scale(1.05) rotateZ(1deg); /* Ligero giro para hacerlo más dinámico */
+    box-shadow: 0 0 15px var(--accent-glow);
 }
 
-footer {
-    padding: 15px;
-    background-color: #333;
-    color: white;
-    margin-top: 30px;
+/* Footer */
+.footer {
+    background-color: #0d0d0d;
+    color: var(--text-color-light);
+    padding: 25px 0;
+    text-align: center;
+    border-top: 2px solid var(--primary-color);
+}
+
+.social-links a {
+    color: var(--text-color-light);
+    font-size: 1.8em;
+    margin: 0 15px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+/* Media Query para responsividad */
+@media (max-width: 650px) {
+    .hero-title {
+        font-size: 2.2em;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
 }

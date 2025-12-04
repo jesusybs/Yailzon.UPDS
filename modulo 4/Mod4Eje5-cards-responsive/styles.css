@@ -1,3 +1,21 @@
+/* =====================================
+   1. VARIABLES Y RESET (FUEGO OSCURO)
+   ===================================== */
+:root {
+    --color-dark-bg: #141414;        /* Fondo principal muy oscuro */
+    --color-card-bg: #2b2b2b;        /* Fondo de las tarjetas */
+    --color-primary: #ff4500;        /* Rojo Anaranjado (Fuego Principal) */
+    --color-secondary: #ff8c00;      /* Naranja Oscuro (Acento) */
+    --color-glow: #ffc400;           /* Amarillo/Oro para brillo y títulos */
+    --color-text-light: #f0f0f0;     /* Texto claro */
+    --color-text-muted: #aaaaaa;     /* Texto secundario */
+    
+    --border-radius-sm: 8px;
+    --shadow-dark: 0 4px 15px rgba(0, 0, 0, 0.5);
+    --spacing-md: 20px;
+    --transition: all 0.3s ease;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,260 +24,160 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    line-height: 1.6;
+    background: var(--color-dark-bg);
+    color: var(--color-text-light);
     min-height: 100vh;
-    padding: 2rem;
 }
 
 .container {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 40px 20px;
 }
 
-/* ==============================
-   PAGE HEADER
-   ============================== */
+/* =====================================
+   2. HEADER Y FILTROS
+   ===================================== */
+
 .page-header {
     text-align: center;
-    margin-bottom: 3rem;
-    color: white;
+    margin-bottom: 40px;
 }
 
 .page-header h1 {
     font-size: 3rem;
-    margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    color: var(--color-primary);
+    margin-bottom: 10px;
 }
 
 .page-header p {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
 }
 
-/* ==============================
-   FILTER BUTTONS
-   ============================== */
 .filter-buttons {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
 }
 
 .filter-btn {
-    padding: 0.8rem 2rem;
-    border: 2px solid white;
-    background: transparent;
-    color: white;
-    border-radius: 25px;
-    cursor: pointer;
+    padding: 10px 20px;
+    border: 2px solid var(--color-secondary);
+    border-radius: 20px;
+    background-color: transparent;
+    color: var(--color-text-light);
     font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-    background:white;
-    color: #667eea;
-}
-
-/* ==============================
-   CARDS GRID RESPONSIVE
-   ============================== */
-.cards-grid {
-    /* 
-       CLAVE: repeat(auto-fit, minmax(300px, 1fr))
-       - auto-fit: Crea tantas columnas como quepan en el contenedor
-       - minmax(300px, 1fr): Cada card tiene mínimo 300px y máximo 1fr (fracción)
-       - Esto hace que el grid sea automáticamente responsive
-    */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-/* ==============================
-   CARD DESIGN
-   ============================== */
-.card {
-    background: white;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
     cursor: pointer;
-    
-    /* Animación de entrada */
-    animation: fadeInUp 0.6s ease;
+    transition: var(--transition);
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.filter-btn:hover {
+    background-color: rgba(255, 140, 0, 0.1);
+    color: var(--color-secondary);
+}
+
+.filter-btn.active {
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    color: var(--color-dark-bg);
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 10px rgba(255, 69, 0, 0.4);
+}
+
+/* =====================================
+   3. GALERÍA DE CARDS (CSS GRID)
+   ===================================== */
+
+.cards-grid {
+    /* CLAVE: Responsive con Grid */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-md);
+}
+
+/* Base de la Card */
+.card {
+    background-color: var(--color-card-bg);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    box-shadow: var(--shadow-dark);
+    transition: var(--transition);
+    border: 1px solid var(--color-card-bg); /* Borde base para evitar saltos */
+    opacity: 1; /* Para la funcionalidad de filtro (requiere JS) */
+    transform: scale(1);
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(255, 69, 0, 0.3);
+    border-color: var(--color-primary);
 }
 
-/* ==============================
-   CARD IMAGE
-   ============================== */
 .card img {
     width: 100%;
-    height: 250px;
+    height: 200px;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    display: block;
 }
 
-.card:hover img {
-    transform: scale(1.1);
-}
-
-/* ==============================
-   CARD CONTENT
-   ============================== */
 .card-content {
-    padding: 1.5rem;
+    padding: var(--spacing-md);
 }
 
 .card-tag {
     display: inline-block;
-    padding: 0.4rem 1rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background-color: var(--color-dark-bg);
+    color: var(--color-secondary);
+    padding: 4px 10px;
     border-radius: 20px;
-    font-size: 0.75rem;
+    font-size: 0.8em;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
+    border: 1px solid var(--color-secondary);
 }
 
 .card-content h3 {
-    color: #333;
-    font-size: 1.4rem;
-    margin-bottom: 0.8rem;
+    font-size: 1.4em;
+    color: var(--color-text-light);
+    margin-bottom: 5px;
 }
 
 .card-content p {
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    font-size: 0.95rem;
+    font-size: 0.9em;
+    color: var(--color-text-muted);
+    margin-bottom: 15px;
 }
 
+/* Botón de la Card */
 .btn {
-    width: 100%;
-    padding: 0.8rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    padding: 10px 15px;
     border: none;
-    border-radius: 8px;
+    border-radius: 20px;
+    font-weight: 700;
     cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
+    background: var(--color-primary);
+    color: var(--color-dark-bg);
+    box-shadow: 0 3px 8px rgba(255, 69, 0, 0.4);
+    transition: var(--transition);
 }
 
 .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    background: var(--color-secondary);
 }
 
-/* ==============================
-   RESPONSIVE
-   ============================== */
+/* =====================================
+   4. ESTILOS PARA LA FUNCIONALIDAD DE FILTRO
+   (Necesita JavaScript para aplicar/remover una clase como 'hidden')
+   ===================================== */
+.card.hidden {
+    display: none;
+}
 
-/* Tablet */
-@media (max-width: 768px) {
-    .page-header h1 {
-        font-size: 2.5rem;
-    }
-    
-    .page-header p {
-        font-size: 1rem;
-    }
-    
-    /*
-       En tablets, el grid todavía se ajusta automáticamente
-       gracias a auto-fit y minmax
-    */
+/* Media Query para responsividad básica */
+@media (max-width: 600px) {
     .cards-grid {
-        gap: 1.5rem;
-    }
-    
-    .filter-buttons {
-        gap: 0.5rem;
-    }
-    
-    .filter-btn {
-        padding: 0.6rem 1.5rem;
-        font-size: 0.9rem;
+        grid-template-columns: 1fr;
     }
 }
-
-/* Mobile */
-@media (max-width: 480px) {
-    body {
-        padding: 1rem;
-    }
-    
-   .page-header h1 {
-        font-size: 2rem;
-    }
-    
-    /*
-       En móviles, el grid se convierte automáticamente en 1 columna
-       porque minmax(300px, 1fr) hace que cada card necesite al menos 300px
-    */
-    .cards-grid {
-        grid-template-columns: 1fr; /* Opcional: forzar 1 columna */
-        gap: 1rem;
-    }
-    
-    .card-content {
-        padding: 1rem;
-    }
-    
-    .card-content h3 {
-        font-size: 1.2rem;
-    }
-    
-    .filter-buttons {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .filter-btn {
-        width: 100%;
-    }
-}
-
-/* ==============================
-   DEMO: DIFERENTES TAMAÑOS DE GRID
-   ============================== */
-
-/*
-   Puedes usar diferentes valores para diferentes comportamientos:
-   
-   - grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-     → Cards más pequeñas, más columnas
-   
-   - grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-     → Similar a auto-fit pero mantiene el espacio vacío
-   
-   - grid-template-columns: repeat(3, 1fr);
-     → Siempre 3 columnas (no responsive)
-   
-   - grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-     → Version mejorada que se adapta mejor en pantallas pequeñas
-*/

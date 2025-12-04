@@ -1,171 +1,152 @@
+/* =====================================
+   1. VARIABLES Y RESET (FUEGO OSCURO)
+   ===================================== */
+:root {
+    --color-dark-bg: #141414;        /* Fondo principal muy oscuro */
+    --color-alt-bg: #202020;         /* Fondo de secciones alternas */
+    --color-nav-bg: #0a0a0a;         /* Negro profundo para la navegación */
+    --color-primary: #ff4500;        /* Rojo Anaranjado (Fuego Principal) */
+    --color-secondary: #ff8c00;      /* Naranja Oscuro (Acento) */
+    --color-glow: #ffc400;           /* Amarillo/Oro para brillo */
+    --color-text-light: #f0f0f0;     /* Texto claro */
+    --color-text-muted: #aaaaaa;     /* Texto secundario */
+    
+    --nav-height: 70px;
+    --border-radius-sm: 8px;
+    --shadow-dark: 0 4px 15px rgba(0, 0, 0, 0.5);
+    --transition: all 0.3s ease;
+}
+
+/* Aplicar Box-Sizing para Box Model Predecible */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
+    background: var(--color-dark-bg);
+    color: var(--color-text-light);
+    min-height: 100vh;
+    scroll-behavior: smooth;
 }
 
-/* ==============================
-   NAVBAR CON FLEXBOX
-   ============================== */
+/* =====================================
+   2. NAVEGACIÓN FLEXBOX Y STICKY
+   ===================================== */
+
 .navbar {
-    background: #1a1a2e;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    
-    /* Position sticky para que se quede fija al hacer scroll */
     position: sticky;
     top: 0;
     z-index: 1000;
-    
-    /* Transición suave */
-    transition: all 0.3s ease;
+    background-color: var(--color-nav-bg);
+    height: var(--nav-height);
+    border-bottom: 2px solid var(--color-primary);
+    box-shadow: var(--shadow-dark);
 }
 
 .navbar-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    
-    /* FLEXBOX: Layout principal de la navbar */
+    /* CLAVE: Flexbox para distribuir elementos horizontalmente */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 70px;
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-/* ==============================
-   LOGO
-   ============================== */
+/* Logo */
 .navbar-logo a {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-decoration: none;
-    
-    /* Flexbox para alinear el icono y texto */
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    
-    transition: color 0.3s ease;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-glow);
+    transition: var(--transition);
 }
-
 .navbar-logo a:hover {
-    color: #00adb5;
+    color: var(--color-secondary);
 }
-
 .navbar-logo svg {
-    color: #00adb5;
+    margin-right: 5px;
+    color: var(--color-primary);
 }
 
-/* ==============================
-   MENÚ DE NAVEGACIÓN
-   ============================== */
+/* Menú Principal */
 .navbar-menu {
-    list-style: none;
-    
-    /* FLEXBOX: Menú horizontal */
     display: flex;
-    gap: 0.5rem;
-    
-    /* Margen auto para empujar los botones a la derecha */
-    margin: 0 auto 0 0;
+    list-style: none;
+    gap: 30px;
 }
 
-.navbar-menu li a {
-    color: rgba(255, 255, 255, 0.9);
+.nav-link {
     text-decoration: none;
-    padding: 0.7rem 1.2rem;
-    border-radius: 8px;
-    
-    /* Flexbox para centrar el texto */
-    display: flex;
-    align-items: center;
-    
-    transition: all 0.3s ease;
+    color: var(--color-text-light);
+    padding: 10px 0;
     font-weight: 500;
+    transition: var(--transition);
     position: relative;
 }
 
-.navbar-menu li a:hover {
-    background: rgba(0, 173, 181, 0.1);
-    color: #00adb5;
+.nav-link:hover, .nav-link.active {
+    color: var(--color-primary);
 }
 
-/* Efecto de subrayado animado */
-.navbar-menu li a::after {
+.nav-link::after {
     content: '';
     position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
     width: 0;
     height: 2px;
-    background: #00adb5;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--color-secondary);
     transition: width 0.3s ease;
 }
 
-.navbar-menu li a:hover::after,
-.navbar-menu li a.active::after {
-    width: 60%;
+.nav-link:hover::after, .nav-link.active::after {
+    width: 100%;
 }
 
-.navbar-menu li a.active {
-    color: #00adb5;
-}
-
-/* ==============================
-   BOTONES DE ACCIÓN
-   ============================== */
+/* Botones de Acción */
 .navbar-actions {
-    /* FLEXBOX: Alinear botones horizontalmente */
     display: flex;
-    gap: 1rem;
-    align-items: center;
+    gap: 10px;
 }
 
 .btn {
-    padding: 0.7rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
+    padding: 8px 15px;
+    border-radius: 20px;
     font-weight: 600;
-    transition: all 0.3s ease;
-    font-size: 0.95rem;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: var(--transition);
 }
 
 .btn-login {
-    background: transparent;
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    background-color: transparent;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
 }
-
 .btn-login:hover {
-    border-color: #00adb5;
-    color: #00adb5;
+    background-color: var(--color-primary);
+    color: var(--color-nav-bg);
 }
 
 .btn-signup {
-    background: linear-gradient(135deg, #00adb5 0%, #00d9ff 100%);
-    color: white;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    color: var(--color-nav-bg);
+    box-shadow: 0 3px 10px rgba(255, 69, 0, 0.4);
 }
-
 .btn-signup:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 173, 181, 0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(255, 140, 0, 0.6);
 }
 
-/* ==============================
-   BOTÓN HAMBURGUESA
-   ============================== */
+/* Botón Hamburguesa (Oculto en Desktop) */
 .navbar-toggle {
     display: none;
     flex-direction: column;
@@ -176,341 +157,280 @@ body {
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 1001;
 }
-
 .navbar-toggle span {
+    display: block;
     width: 100%;
     height: 3px;
-    background: white;
-    border-radius: 10px;
-    transition: all 0.3s ease;
+    background-color: var(--color-primary);
+    border-radius: 5px;
+    transition: var(--transition);
 }
 
-/* Animación del botón hamburguesa cuando está activo */
-.navbar-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(8px, 8px);
-}
-
-.navbar-toggle.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.navbar-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
-}
-
-/* ==============================
-   SECCIONES DE CONTENIDO
-   ============================== */
+/* =====================================
+   3. SECCIONES DE CONTENIDO
+   ===================================== */
 .section {
-    min-height: 100vh;
-    padding: 5rem 2rem;
+    padding: 80px 0;
+}
+.section-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h2 {
+    font-size: 2.2rem;
+    color: var(--color-primary);
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* Hero Section */
+.section-hero {
+    min-height: calc(100vh - var(--nav-height));
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.section-content {
-    max-width: 1200px;
-    width: 100%;
-}
-
-.section h2 {
     text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: #1a1a2e;
+    background: linear-gradient(180deg, var(--color-dark-bg) 0%, #303030 100%);
 }
-
-.section-hero {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    text-align: center;
-}
-
 .section-hero h1 {
-    color: white;
     font-size: 3.5rem;
-    margin-bottom: 1rem;
+    color: var(--color-glow);
+    margin-bottom: 15px;
 }
-
 .section-hero p {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+    margin-bottom: 30px;
 }
-
 .btn-cta {
-    background: linear-gradient(135deg, #00adb5 0%, #00d9ff 100%);
-    color: white;
-    padding: 1rem 2.5rem;
-    font-size: 1.1rem;
+    padding: 15px 30px;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    color: var(--color-nav-bg);
+    font-size: 1.2rem;
+    box-shadow: 0 5px 15px rgba(255, 69, 0, 0.5);
+    border: none;
+    border-radius: 30px;
 }
-
 .btn-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 173, 181, 0.4);
+    transform: translateY(-3px);
 }
 
-/* Animaciones de entrada */
-.fade-in {
-    animation: fadeInUp 1s ease;
+/* Sección Oscura Alterna */
+.section-dark {
+    background-color: var(--color-alt-bg);
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Servicios */
+/* Grid de Servicios */
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-}
-
-.service-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
     text-align: center;
-    transition: transform 0.3s ease;
 }
-
+.service-card {
+    background-color: var(--color-nav-bg);
+    padding: 25px;
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-dark);
+    border-top: 3px solid var(--color-secondary);
+    transition: var(--transition);
+}
 .service-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(255, 140, 0, 0.2);
 }
-
 .service-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: 15px;
 }
-
 .service-card h3 {
-    color: #1a1a2e;
-    margin-bottom: 1rem;
+    color: var(--color-text-light);
+    margin-bottom: 10px;
 }
-
 .service-card p {
-    color: #666;
+    color: var(--color-text-muted);
 }
 
-/* Portfolio */
-.section-dark {
-    background: #1a1a2e;
-}
-
-.section-dark h2 {
-    color: white;
-}
-
+/* Portfolio Grid */
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 20px;
 }
-
 .portfolio-item {
     position: relative;
     overflow: hidden;
-    border-radius: 15px;
-    cursor: pointer;
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-dark);
 }
-
 .portfolio-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    display: block;
 }
-
-.portfolio-item:hover img {
-    transform: scale(1.1);
-}
-
 .portfolio-overlay {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-    color: white;
-    padding: 2rem;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 69, 0, 0.8);
+    color: var(--color-nav-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
 }
-
 .portfolio-item:hover .portfolio-overlay {
-    transform: translateY(0);
+    opacity: 1;
 }
-
 .portfolio-overlay h3 {
-    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+.portfolio-overlay p {
+    color: var(--color-nav-bg);
 }
 
 /* Testimonios */
 .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
 }
-
 .testimonial {
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    background-color: var(--color-nav-bg);
+    padding: 25px;
+    border-radius: var(--border-radius-sm);
+    border-left: 5px solid var(--color-secondary);
 }
-
 .testimonial-text {
     font-style: italic;
-    color: #666;
-    margin-bottom: 1.5rem;
-    line-height: 1.8;
+    color: var(--color-text-light);
+    margin-bottom: 15px;
 }
-
 .testimonial-author strong {
-    color: #1a1a2e;
+    color: var(--color-primary);
     display: block;
-    margin-bottom: 0.3rem;
 }
-
 .testimonial-author span {
-    color: #00adb5;
-    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    font-size: 0.9em;
 }
 
 /* Contacto */
 .section-contact {
-    background: linear-gradient(135deg, #00adb5 0%, #00d9ff 100%);
-    color: white;
     text-align: center;
 }
-
-.section-contact h2 {
-    color: white;
+.section-contact p {
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+    margin-bottom: 30px;
 }
-
 .contact-info {
     display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin-top: 2rem;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
 }
-
 .contact-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 10px;
 }
-
 .contact-icon {
     font-size: 1.5rem;
+    color: var(--color-secondary);
+}
+.contact-item span:last-child {
+    color: var(--color-text-light);
 }
 
 /* Footer */
 .footer {
-    background: #1a1a2e;
-    color: white;
+    background-color: var(--color-nav-bg);
+    padding: 20px 0;
     text-align: center;
-    padding: 2rem;
+    color: var(--color-text-muted);
+    border-top: 2px solid var(--color-primary);
 }
 
-/* ==============================
-   RESPONSIVE - MOBILE
-   ============================== */
-@media (max-width: 768px) {
-    .navbar-container {
-        padding: 0 1rem;
-    }
-    
-    /* Mostrar botón hamburguesa */
-    .navbar-toggle {
-        display: flex;
-    }
-    
-    /* Ocultar menú y acciones por defecto en móviles */
-    .navbar-menu,
-    .navbar-actions {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 100%;
-        background: #1a1a2e;
-        flex-direction: column;
-        align-items: center;
-        padding: 2rem 0;
-        transition: left 0.3s ease;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    }
-    
-    .navbar-actions {
-        top: auto;
-        bottom: 0;
-        padding: 1.5rem 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    /* Mostrar menú cuando está activo */
-    .navbar-menu.active {
-        left: 0;
-    }
-    
-    .navbar-actions.active {
-        left: 0;
-    }
-    
-    /* Menú items verticales */
+
+/* =====================================
+   4. RESPONSIVE (Móvil)
+   ===================================== */
+@media (max-width: 900px) {
     .navbar-menu {
-        gap: 0;
+        gap: 20px;
     }
-    
-    .navbar-menu li {
-        width: 100%;
-        text-align: center;
-    }
-    
-    .navbar-menu li a {
-        width: 100%;
-        padding: 1rem;
-        justify-content: center;
-    }
-    
-    .navbar-menu li a::after {
+}
+
+@media (max-width: 768px) {
+    /* Mostrar Hamburguesa y Ocultar Menu y Acciones */
+    .navbar-menu, .navbar-actions {
         display: none;
     }
     
-    /* Botones en columna */
-    .navbar-actions {
-        gap: 1rem;
+    .navbar-toggle {
+        display: flex;
+    }
+
+    /* Estilos del menú móvil (se requiere JS para el toggle) */
+    .navbar-menu.active {
+        position: absolute;
+        top: var(--nav-height);
+        left: 0;
         width: 100%;
-        padding: 1.5rem;
-    }
-    
-    .navbar-actions .btn {
-        width: 100%;
-        max-width: 300px;
-    }
-    
-    /* Ajustar tamaños de fuente */
-    .section-hero h1 {
-        font-size: 2.5rem;
-    }
-    
-    .section h2 {
-        font-size: 2rem;
-    }
-    
-    .contact-info {
+        display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        background-color: var(--color-nav-bg);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+        z-index: 999;
+        gap: 0;
+        border-top: 1px solid var(--color-alt-bg);
+    }
+    .navbar-menu.active li {
+        width: 100%;
+        border-bottom: 1px solid var(--color-alt-bg);
+    }
+    .navbar-menu.active .nav-link {
+        display: block;
+        padding: 15px 20px;
+        text-align: center;
+    }
+    .navbar-menu.active .nav-link::after {
+        display: none;
+    }
+
+    /* Otras secciones */
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+    .section-hero h1 {
+        font-size: 3rem;
     }
 }
+
+/* =====================================
+   5. JAVASCRIPT REQUERIDO
+   ===================================== */
+
+/* Necesitas este script en script.js para que el menú móvil funcione */
+/* document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('navbarToggle');
+    const menu = document.getElementById('navbarMenu');
+
+    if (toggle && menu) {
+        toggle.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+    }
+}); */

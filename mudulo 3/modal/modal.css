@@ -1,116 +1,250 @@
-/* ---------------------------------- */
-/* 1. Estilos Base y Botón de Apertura */
-/* ---------------------------------- */
+/* =====================================
+   VARIABLES (FUEGO OSCURO)
+   ===================================== */
+:root {
+    --color-dark-bg: #141414;        /* Fondo principal */
+    --color-modal-bg: #2b2b2b;       /* Fondo del modal */
+    --color-primary: #ff4500;        /* Rojo Anaranjado (Fuego Principal) */
+    --color-secondary: #ff8c00;      /* Naranja Oscuro (Acento) */
+    --color-glow: #ffc400;           /* Amarillo/Oro para brillo */
+    --color-text-light: #f0f0f0;     
+    --color-nav-bg: #0d0d0d;
+    --border-radius-lg: 12px;
+    --shadow-intensity: 0 10px 40px rgba(0, 0, 0, 0.7);
+    --transition: all 0.3s ease;
+}
 
+/* =====================================
+   BASE DEL BODY Y BOTÓN DE LANZAMIENTO
+   ===================================== */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;
-    padding-top: 50px;
-    background-color: #f4f7f9;
-    
-}
-
-#abrirModalBtn {
-    padding: 12px 25px;
-    font-size: 18px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#abrirModalBtn:hover {
-    background-color: #0056b3;
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* ---------------------------------- */
-/* 2. Estilos del Modal (El Overlay - Oculto por defecto) */
-/* ---------------------------------- */
-
-.modal {
-    display: none; /* Oculto por defecto, espera la clase 'modal-visible' */
-    
-    /* Configuración para ocupar toda la pantalla y apilarse encima de todo */
-    position: fixed; 
-    z-index: 1000; /* Alto z-index para estar por encima del contenido normal */
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%;
-    
-    /* Centrado elegante con Flexbox (los hijos se centran) */
+    background-color: var(--color-dark-bg);
+    color: var(--color-text-light);
+    display: flex;
     justify-content: center;
     align-items: center;
-
-    /* Transición para el fondo (permite el efecto fade-in) */
-    background-color: rgba(0,0,0,0); /* Empieza totalmente transparente */
-    transition: background-color 0.3s ease;
+    min-height: 100vh;
 }
 
-/* ---------------------------------- */
-/* 3. Clase para MOSTRAR el Modal (Activada por JavaScript) */
-/* ---------------------------------- */
-
-.modal.modal-visible {
-    display: flex; /* Muestra el contenedor completo (incluyendo el overlay) */
-    background-color: rgba(0,0,0,0.6); /* Color final del overlay (semitransparente) */
+.content-wrapper {
+    text-align: center;
 }
 
-
-/* ---------------------------------- */
-/* 4. Contenido del Modal (La Caja Interior) */
-/* ---------------------------------- */
-
-.modal-contenido {
-    /* Estilos de la caja */
-    background-color: white;
-    padding: 30px;
-    border-radius: 12px;
-    max-width: 550px;
-    width: 90%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    text-align: left;
-
-    /* Estado inicial para la animación de aparición (slide-up) */
-    transform: translateY(50px);
-    opacity: 0;
-    /* Transición suave para la animación */
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease;
-}
-
-/* Estado final de la animación: Vuelve a posición 0 y se hace visible */
-.modal.modal-visible .modal-contenido {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-/* ---------------------------------- */
-/* 5. Botón de Cierre y Título */
-/* ---------------------------------- */
-
-.modal-contenido h2 {
-    color: #333;
-    margin-top: 0;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
-}
-
-.cerrar {
-    color: #999;
-    float: right; 
-    font-size: 32px;
-    font-weight: 300;
-    line-height: 1;
+/* Botón de Lanzamiento con estilo de fuego */
+.btn-fire {
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    color: var(--color-nav-bg);
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1em;
+    font-weight: 700;
     cursor: pointer;
-    transition: color 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 69, 0, 0.6);
+    transition: var(--transition);
+}
+.btn-fire:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 140, 0, 0.8);
+}
+.btn-fire .fas {
+    margin-right: 8px;
+}
+
+
+/* =====================================
+   ESTRUCTURA DEL MODAL
+   ===================================== */
+
+/* 1. Contenedor Oscuro (Fondo del Modal) */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Siempre visible */
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* Fondo oscuro y semitransparente con efecto de desenfoque */
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    overflow: auto; /* Para cuando el contenido sea muy largo */
+    
+    /* Animación de entrada sutil (Fade In) */
+    animation: fadeIn 0.3s;
+}
+
+/* 2. Contenido del Modal (La caja central) */
+.modal-contenido {
+    background-color: var(--color-modal-bg);
+    margin: 10% auto; /* Centrar verticalmente y dejar espacio superior */
+    padding: 0;
+    width: 90%;
+    max-width: 700px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-intensity);
+    border: 3px solid var(--color-primary); /* Borde de fuego */
+    position: relative;
+    
+    /* Animación para que aparezca desde arriba (Zoom/Drop) */
+    animation: modalDrop 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes modalDrop {
+    0% { transform: scale(0.8) translateY(-100px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+
+/* Botón de Cerrar */
+.cerrar {
+    color: var(--color-primary);
+    float: right;
+    font-size: 2.5em;
+    font-weight: bold;
+    margin: 10px 15px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    transition: var(--transition);
+    text-shadow: 0 0 5px rgba(255, 69, 0, 0.6);
 }
 
 .cerrar:hover,
 .cerrar:focus {
-    color: #ff3860; /* Color llamativo al pasar el ratón */
+    color: var(--color-glow);
     text-decoration: none;
+}
+
+
+/* =====================================
+   3. CONTENIDO LLAMATIVO
+   ===================================== */
+
+.modal-header {
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    color: var(--color-nav-bg);
+    padding: 20px;
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+    text-align: center;
+}
+.modal-header h2 {
+    font-size: 2em;
+    margin-top: 5px;
+}
+.header-icon {
+    font-size: 2.5rem;
+    color: var(--color-glow);
+    margin-bottom: 10px;
+}
+
+/* Estructura del Cuerpo con Grid */
+.modal-body-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    padding: 30px;
+    align-items: center;
+}
+
+.modal-image {
+    overflow: hidden;
+    border-radius: var(--border-radius-lg);
+    border: 2px solid var(--color-secondary);
+}
+.modal-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.lead-text {
+    font-size: 1.2em;
+    color: var(--color-text-light);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.lead-text strong {
+    color: var(--color-glow);
+}
+
+/* Formulario */
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+.modal-form input {
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid var(--color-nav-bg);
+    background-color: var(--color-nav-bg);
+    color: var(--color-text-light);
+}
+.modal-form input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 5px rgba(255, 69, 0, 0.5);
+}
+
+.btn-primary-action {
+    background: var(--color-glow);
+    color: var(--color-nav-bg);
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+.btn-primary-action:hover {
+    background: var(--color-primary);
+    color: white;
+}
+
+/* Footer */
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: var(--color-nav-bg);
+    border-top: 1px solid var(--color-primary);
+    border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+}
+.btn-secondary-action {
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: var(--transition);
+}
+.btn-secondary-action:hover {
+    color: var(--color-secondary);
+}
+.modal-footer p {
+    color: var(--color-fail); /* Usar color de falla (rojo) para urgencia */
+    font-size: 0.9em;
+}
+
+/* Media Query para móvil */
+@media (max-width: 600px) {
+    .modal-body-grid {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+    .modal-image {
+        display: none; /* Ocultar imagen en móvil para ahorrar espacio */
+    }
+    .modal-contenido {
+        margin: 5% auto;
+    }
 }

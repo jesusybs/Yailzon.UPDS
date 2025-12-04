@@ -3,34 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Portafolio de Proyectos | [Tu Nombre]</title>
+    <title>🔥 Portafolio de Proyectos Web | YAILZON</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>🌟 Mis Proyectos Web 🌟</h1>
-        <p>¡Bienvenido! Este es un centro de enlaces a algunos de mis proyectos más recientes.</p>
+    <header class="hero">
+        <div class="container">
+            <div class="profile-container">
+                <img src="/indexPricipal/imgperfi.jpeg" alt="Foto de Perfil de [Tu Nombre]" class="profile-photo">
+                <h1 class="hero-title">
+                    Hola, soy <span class="highlight-name">YAILZON</span> 
+                </h1>
+            </div>
+            
+            <p class="hero-subtitle">🌟 Mis Proyectos Web 🌟</p>
+            <p class="hero-subtitle">¡Bienvenido! Este es un centro de enlaces a algunos de mis ejercicios y proyectos más recientes.</p>
+        </div>
     </header>
 
-    <main class="project-grid">
+    <main class="project-grid container">
         <section class="project-card">
-            <h2>Proyecto de Ejemplo 1</h2>
-            <p>Descripción corta: Una aplicación web simple de lista de tareas (To-Do List).</p>
-            <a href="[URL_DE_TU_PROYECTO_1]" target="_blank" class="project-link">Ver Proyecto</a>
-            <a href="[URL_DEL_REPOSITORIO_1]" target="_blank" class="repo-link">Código Fuente</a>
-        </section>
-
-        <section class="project-card">
-            <h2>Proyecto de Ejemplo 2</h2>
-            <p>Descripción corta: Un clon de página de inicio usando solo HTML y CSS avanzado.</p>
-            <a href="[URL_DE_TU_PROYECTO_2]" target="_blank" class="project-link">Ver Proyecto</a>
-            <a href="[URL_DEL_REPOSITORIO_2]" target="_blank" class="repo-link">Código Fuente</a>
+            <h2 class="card-title">🚀 Módulo 1: Fundamentos HTML</h2>
+            <p class="card-description">Primeros pasos con la estructura básica de HTML y etiquetas esenciales.</p>
+            <div class="card-links">
+                <a href="/mudulo 1/ARTICULO/index.html" target="_blank" class="project-link">ARTÍCULO</a>
+                <a href="/mudulo 1/NAVEGACION/index.html" target="_blank" class="project-link">NAVEGACIÓN</a>
+                <a href="/mudulo 1/TARJETA-PERFIL/" target="_blank" class="project-link">TARJETA-PERFIL</a>
+            </div>
         </section>
         
-        </main>
+        <section class="project-card">
+            <h2 class="card-title">✨ Módulo 2: Box Model y CSS Básico</h2>
+            <p class="card-description">Explorando el Box Model (margin, padding, border) y propiedades de estilo.</p>
+            <div class="card-links">
+                <a href="/Modulo 2/Ejercicios-Modulo-2/ejercicio-1-paddings/ppt.html" target="_blank" class="project-link">PADDINGS</a>
+                <a href="/Modulo 2/Ejercicios-Modulo-2/ejercicio-2-bordes/index.html" target="_blank" class="project-link">BORDES</a>
+                <a href="/Modulo 2/Ejercicios-Modulo-2/ejercicio-3-box-sizing/index.html" target="_blank" class="project-link">BOX-SIZING</a>
+                <a href="/Modulo 2/Ejercicios-Modulo-2/ejercicio-4-card/index.html" target="_blank" class="project-link">CARD</a>
+            </div>
+        </section>
 
-    <footer>
-        <p>&copy; 2025 [Tu Nombre]. Creado con ❤️.</p>
+        <section class="project-card">
+            <h2 class="card-title">💡 Módulo 3: Posicionamiento y Efectos</h2>
+            <p class="card-description">Uso de `position`, `z-index`, y técnicas para efectos visuales como modales y superposiciones.</p>
+            <div class="card-links">
+                <a href="/mudulo 3/Mod3Eje2-navbar-stiky/index.html" target="_blank" class="project-link">NAVBAR-STICKY</a>
+                <a href="/mudulo 3/Mod3Eje3-card-badge/index.html" target="_blank" class="project-link">CARD-BADGE</a>
+                <a href="/mudulo 3/Mod3Eje4-hero-overlay/index.html" target="_blank" class="project-link">HERO-OVERLAY</a>
+                <a href="/mudulo 3/modal/motdal.html" target="_blank" class="project-link">MODAL</a>
+            </div>
+        </section>
+
+        <section class="project-card">
+            <h2 class="card-title">⚙️ Módulo 4: Layout Avanzado (Flexbox & Grid)</h2>
+            <p class="card-description">Diseño de interfaces complejas y responsivas con CSS Flexbox y Grid.</p>
+            <div class="card-links">
+                <a href="/modulo 4/Mod4Eje1-navbar-flexbox/index.html" target="_blank" class="project-link">NAVBAR-FLEXBOX</a>
+                <a href="/modulo 4/Mod4Eje2-gallery-grid/index.html" target="_blank" class="project-link">GALLERY-GRID</a>
+                <a href="/modulo 4/Mod4Eje3-holy-grail/index.html" target="_blank" class="project-link">HOLY-GRAIL</a>
+                <a href="/modulo 4/Mod4Eje4-dashboard/index.html" target="_blank" class="project-link">DASHBOARD</a>
+                <a href="/modulo 4/Mod4Eje5-cards-responsive/index.html" target="_blank" class="project-link">CARD-RESPONSIVE</a>
+            </div>
+        </section>
+  
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 [Tu Nombre]. Creado con ❤️ y 💻.</p>
+            <div class="social-links">
+                <a href="#" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
     </footer>
 </body>
 </html>

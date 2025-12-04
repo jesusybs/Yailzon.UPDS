@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modal Separado</title>
-    
+    <title>Ventana Modal Premium | Fuego Oscuro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="modal.css"> 
 </head>
 <body>
 
-    <button id="abrirModalBtn">Abrir Mi Ventana Modal</button>
+    <div class="content-wrapper">
+        <h1 style="color:var(--color-primary);">¡Click para ver la Demo!</h1>
+        <button id="abrirModalBtn" class="btn-fire">
+            <i class="fas fa-fire"></i> Abrir Mi Ventana Modal Premium
+        </button>
+    </div>
 
     <div id="miModal" class="modal">
         
@@ -17,10 +22,37 @@
             
             <span class="cerrar">&times;</span> 
 
-            <h2>¡Modal Completamente Funcional!</h2>
-            <p>El HTML, CSS y JavaScript están ahora en archivos separados.</p>
-        </div>
+            <div class="modal-header">
+                <i class="fas fa-exclamation-triangle header-icon"></i>
+                <h2>¡OFERTA EXCLUSIVA DE FUEGO!</h2>
+            </div>
 
+            <div class="modal-body-grid">
+                <div class="modal-image">
+                    <img src="https://images.unsplash.com/photo-1510511459019-5be7769c2a44?w=400&h=250&fit=crop" alt="Elemento exclusivo">
+                </div>
+                
+                <div class="modal-text">
+                    <p class="lead-text">
+                        ¡No pierdas esta oportunidad única! Regístrate ahora para obtener un **20% de descuento**.
+                    </p>
+                    <p>
+                        Este componente demuestra una implementación avanzada con diseño dark mode y posición fija.
+                    </p>
+                    <form class="modal-form">
+                        <input type="email" placeholder="Introduce tu Email" required>
+                        <button type="submit" class="btn-primary-action">
+                            <i class="fas fa-rocket"></i> Obtener Descuento
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn-secondary-action">Más tarde</button>
+                <p>La oferta expira en 24 horas.</p>
+            </div>
+        </div>
     </div>
 
     <script src="scripts.js"></script> 

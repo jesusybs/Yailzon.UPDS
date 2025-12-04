@@ -1,3 +1,28 @@
+/* =====================================
+   1. VARIABLES Y RESET (FUEGO OSCURO)
+   ===================================== */
+:root {
+    --color-dark-bg: #141414;        /* Fondo principal muy oscuro */
+    --color-card-bg: #2b2b2b;        /* Fondo de las tarjetas */
+    --color-primary: #ff4500;        /* Rojo Anaranjado (Fuego Principal) */
+    --color-secondary: #ff8c00;      /* Naranja Oscuro (Acento) */
+    --color-glow: #ffc400;           /* Amarillo/Oro para brillo */
+    --color-text-light: #f0f0f0;     /* Texto claro */
+    --color-text-muted: #aaaaaa;     /* Texto secundario */
+    
+    --badge-new: #ff4500;            /* Rojo para NUEVO */
+    --badge-discount: #cc3700;       /* Rojo más oscuro para Descuento */
+    --badge-hot: #ffc400;            /* Amarillo/Oro para HOT */
+    --badge-limited: #e74c3c;        /* Rojo vivo para Limitado */
+    --badge-premium: #ff8c00;        /* Naranja para Premium */
+    --badge-bestseller: #1abc9c;     /* Verde contrastante para Bestseller */
+    
+    --border-radius-sm: 8px;
+    --shadow-intensity: 0 8px 20px rgba(0, 0, 0, 0.5);
+    --spacing-md: 20px;
+    --transition: all 0.3s ease;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,285 +31,198 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    line-height: 1.6;
+    background: var(--color-dark-bg);
+    color: var(--color-text-light);
     min-height: 100vh;
-    padding: 2rem;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 40px 20px;
 }
 
-h1 {
-    color: white;
+/* =====================================
+   2. TIPOGRAFÍA Y ESTRUCTURA
+   ===================================== */
+.page-title {
     text-align: center;
-    margin-bottom: 0.5rem;
-    font-size: 2.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    color: var(--color-primary);
+    font-size: 2.5em;
+    margin-bottom: 5px;
 }
 
 .subtitle {
-    color: rgba(255, 255, 255, 0.9);
     text-align: center;
-    margin-bottom: 3rem;
-    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    margin-bottom: 30px;
 }
 
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
+    gap: var(--spacing-md);
 }
 
-/* ==============================
-   CARD CONTAINER
-   ============================== */
+/* =====================================
+   3. ESTILO BASE DE LA CARD
+   ===================================== */
 .card {
-    /* position: relative es CRUCIAL para que el badge se posicione respecto a la card */
-    position: relative;
-    
-    background: white;
-    border-radius: 15px;
+    background-color: var(--color-card-bg);
+    border-radius: var(--border-radius-sm);
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
+    box-shadow: var(--shadow-intensity);
+    transition: var(--transition);
+    border: 1px solid rgba(255, 69, 0, 0.2); 
+    
+    /* CLAVE DE POSICIONAMIENTO */
+    position: relative; 
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(255, 69, 0, 0.4); 
+    border-color: var(--color-primary);
 }
 
-/* ==============================
-   BADGE POSICIONADO
-   ============================== */
-.badge {
-    /* position: absolute para posicionar respecto al contenedor .card */
-    position: absolute;
-    
-    /* Posicionamiento en la esquina superior derecha */
-    top: 1rem;
-    right: 1rem;
-    
-    /* z-index para asegurar que esté encima de la imagen */
-    z-index: 10;
-    
-    /* Estilos visuales */
-    padding: 0.5rem 1rem;
-    font-size: 0.75rem;
-    font-weight: bold;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    
-    /* Animación de entrada */
-    animation: badgeBounce 0.5s ease;
-}
-
-@keyframes badgeBounce {
-    0% {
-        transform: scale(0);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Variantes de badges */
-.badge-new {
-    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-    color: white;
-}
-
-.badge-discount {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    color: white;
-    font-size: 1rem;
-    padding: 0.6rem 1.2rem;
-}
-
-.badge-hot {
-    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-    color: #333;
-    animation: badgePulse 2s ease-in-out infinite;
-}
-
-@keyframes badgePulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-}
-
-.badge-limited {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
-    color: white;
-    font-size: 0.65rem;
-    padding: 0.4rem 0.8rem;
-    animation: badgeShake 3s ease-in-out infinite;
-}
-
-@keyframes badgeShake {
-    0%, 100% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(-5deg);
-    }
-    75% {
-        transform: rotate(5deg);
-    }
-}
-
-.badge-premium {
-    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-    color: #ffd700;
-    border: 2px solid #ffd700;
-}
-
-.badge-bestseller {
-    background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
-    color: white;
-}
-
-/* ==============================
-   CARD IMAGE
-   ============================== */
 .card-image {
-    width: 100%;
+    position: relative;
     height: 200px;
     overflow: hidden;
-    position: relative;
 }
 
 .card-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
 }
 
-.card:hover .card-image img {
-    transform: scale(1.1);
-}
-
-/* ==============================
-   CARD CONTENT
-   ============================== */
 .card-content {
-    padding: 1.5rem;
+    padding: var(--spacing-md);
 }
 
 .card-content h3 {
-    color: #333;
-    margin-bottom: 0.8rem;
-    font-size: 1.3rem;
+    font-size: 1.4em;
+    color: var(--color-text-light);
+    margin-bottom: 10px;
 }
 
 .card-content p {
-    color: #666;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-    font-size: 0.95rem;
+    font-size: 0.9em;
+    color: var(--color-text-muted);
+    margin-bottom: 15px;
+    min-height: 40px;
 }
 
-/* ==============================
-   CARD FOOTER
-   ============================== */
 .card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 1rem;
-    border-top: 1px solid #eee;
+    border-top: 1px solid rgba(255, 69, 0, 0.1);
+    padding-top: 15px;
 }
 
 .price {
-    font-size: 1.5rem;
-    font-weight: bold;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--color-glow); /* Precio en color de brillo */
 }
 
+/* Botón de Compra */
 .btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    padding: 10px 15px;
     border: none;
-    padding: 0.7rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
+    border-radius: 5px;
     font-weight: 600;
-    transition: all 0.3s ease;
+    cursor: pointer;
+    transition: var(--transition);
+    background: var(--color-primary);
+    color: var(--color-card-bg);
+    box-shadow: 0 3px 8px rgba(255, 69, 0, 0.4);
 }
 
 .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    background: var(--color-secondary);
+    box-shadow: 0 5px 10px rgba(255, 140, 0, 0.6);
 }
 
-.btn:active {
-    transform: translateY(0);
+/* =====================================
+   4. ESTILOS DE BADGE (CLAVE)
+   ===================================== */
+.badge {
+    /* CLAVE: Posicionado con respecto al padre (.card) */
+    position: absolute; 
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+    
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.85em;
+    font-weight: 700;
+    color: var(--color-card-bg);
+    text-transform: uppercase;
+    
+    /* Estilos de Fuego/Glow */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    transform: rotate(3deg); /* Le da un toque dinámico */
 }
 
-/* ==============================
-   RESPONSIVE
-   ============================== */
-@media (max-width: 768px) {
-    body {
-        padding: 1rem;
-    }
-    
-    h1 {
-        font-size: 2rem;
-    }
-    
+/* Badge 'NUEVO' */
+.badge-new {
+    background-color: var(--badge-new);
+}
+
+/* Badge 'DESCUENTO' */
+.badge-discount {
+    background-color: var(--badge-discount);
+    right: auto;
+    left: 15px; /* Posicionado en la esquina opuesta */
+    border-radius: 0 5px 5px 0;
+}
+
+/* Badge 'HOT' */
+.badge-hot {
+    background-color: var(--badge-hot);
+    color: var(--color-card-bg);
+    box-shadow: 0 0 10px var(--color-glow);
+}
+
+/* Badge 'LIMITADO' */
+.badge-limited {
+    background-color: var(--badge-limited);
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    top: 50%; /* Centrado vertical */
+    right: 50%;
+    transform: translate(50%, -50%) rotate(0deg);
+}
+
+/* Badge 'PREMIUM' */
+.badge-premium {
+    background-color: var(--badge-premium);
+    top: 0;
+    right: 0;
+    border-radius: 0 var(--border-radius-sm) 0 0;
+    padding: 10px 15px;
+    letter-spacing: 1px;
+}
+
+/* Badge 'BESTSELLER' (Color de contraste) */
+.badge-bestseller {
+    background-color: var(--badge-bestseller); /* Color contrastante */
+    color: var(--color-card-bg);
+    left: 15px;
+    right: auto;
+    border-radius: 50px;
+    transform: rotate(-3deg);
+}
+
+/* Media Query para responsividad básica */
+@media (max-width: 600px) {
     .cards-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .badge {
-        top: 0.7rem;
-        right: 0.7rem;
-        font-size: 0.7rem;
-        padding: 0.4rem 0.8rem;
-    }
-    
-    .badge-discount {
-        font-size: 0.9rem;
-        padding: 0.5rem 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .card-content {
-        padding: 1rem;
-    }
-    
-    .card-content h3 {
-        font-size: 1.1rem;
-    }
-    
-    .card-content p {
-        font-size: 0.9rem;
-    }
-    
-    .price {
-        font-size: 1.3rem;
-    }
-    
-    .btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
     }
 }
