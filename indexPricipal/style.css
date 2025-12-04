@@ -1,0 +1,72 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9; /* Fondo claro */
+    color: #333;
+    text-align: center;
+}
+
+header {
+    background-color: #007bff; /* Un azul vibrante */
+    color: white;
+    padding: 30px 20px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin-bottom: 5px;
+}
+
+/* Estilo de la cuadrícula de proyectos */
+.project-grid {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las tarjetas salten a la siguiente línea */
+    justify-content: center;
+    gap: 20px; /* Espacio entre las tarjetas */
+    padding: 20px;
+}
+
+/* Estilo de cada tarjeta */
+.project-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px; /* Ancho fijo para las tarjetas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    transition: transform 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px); /* Efecto al pasar el ratón */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo de los enlaces */
+.project-link, .repo-link {
+    display: block; /* Ocupa todo el ancho */
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.project-link {
+    background-color: #28a745; /* Botón principal verde */
+    color: white;
+}
+
+.repo-link {
+    background-color: #6c757d; /* Botón secundario gris */
+    color: white;
+    font-size: 0.9em;
+}
+
+footer {
+    padding: 15px;
+    background-color: #333;
+    color: white;
+    margin-top: 30px;
+}
